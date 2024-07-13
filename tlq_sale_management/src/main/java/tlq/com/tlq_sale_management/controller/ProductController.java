@@ -3,6 +3,7 @@ package tlq.com.tlq_sale_management.controller;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/product")
 @CrossOrigin("*")
+@Slf4j
 public class ProductController {
 
     @Autowired
@@ -43,6 +45,8 @@ public class ProductController {
 
     @PostMapping("")
     public ResponseEntity<String> createProduct(@RequestParam("product") String productJson, @RequestParam("file") MultipartFile file) {
+        log.error("productJson: " + productJson);
+        log.error("file: "+ file.toString());
         Map uploadResult = null;
         try {
             // Chuyển đổi chuỗi JSON thành đối tượng Product
